@@ -1,0 +1,218 @@
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+:root {
+    --bg-blue: #c7ebff;
+    --main-blue: rgba(10, 117, 243, 1);
+    --secondary-blue: rgba(47, 180, 255, 1);
+    --green-wa: rgba(8, 201, 74, 1);
+}
+
+* {
+    box-sizing: border-box;
+    /* padding: 0 !important; */
+}
+
+h1,
+p {
+    margin-bottom: 0 !important;
+}
+
+.hero {
+    background-color: var(--bg-blue);
+    z-index: 0;
+    aspect-ratio: auto;
+}
+
+.navbar {
+    height: fit-content;
+    width: 85%;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    background-color: white;
+    left: 0;
+    right: 0;
+    bottom: 150px;
+    margin: auto;
+    gap: 12px;
+}
+
+.navbar h1 {
+    font-size: 1.5rem;
+    width: 160px;
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+    background-color: var(--bg-blue);
+    padding: 32px 0 !important;
+    position: relative;
+    z-index: 10;
+    margin-top: -10px;
+}
+
+.title h1 {
+    font-family: "Reem Kufi", sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.content {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, min-content);
+    gap: 8px;
+}
+
+.date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 100%;
+    background-color: var(--bg-blue);
+}
+
+.date-box {
+    background-color: var(--bg-blue);
+    display: flex;
+    color: white;
+}
+
+.date-box-first {
+    width: fit-content;
+    padding: 10px 12px !important;
+    background-color: var(--secondary-blue);
+
+    display: flex;
+    align-items: center;
+}
+
+.bg-secondary-blue {
+    background-color: rgba(199, 235, 255, 0.5);
+}
+
+.bg-blue {
+    background-color: var(--bg-blue);
+}
+
+.date-box-first h1 {
+    text-align: center;
+    font-family: "Reem Kufi", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.date-box-second h1 {
+    width: 200px;
+    font-family: "Roboto", sans-serif;
+    padding: 10px 12px !important;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    background-color: var(--main-blue);
+}
+
+.date-box-title h1 {
+    font-family: "Gloria Hallelujah", cursive;
+    font-size: 2rem;
+}
+
+.register-intro {
+    background-color: var(--bg-blue);
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    padding: 48px !important;
+    gap: 24px;
+}
+
+.img-container {
+    width: 600px;
+}
+.register-intro h1 {
+    font-family: "Gloria Hallelujah", cursive;
+    font-size: 2rem;
+    line-height: 56px;
+}
+
+.register-cta-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    background-color: var(--bg-blue);
+}
+
+.register-cta-container h1 {
+    text-align: center;
+    font-family: "Gloria Hallelujah", cursive;
+    font-size: 2rem;
+}
+
+.button-cust {
+    background-color: var(--main-blue);
+    font-size: 1.2rem;
+    font-family: "Roboto", sans-serif;
+    height: fit-content;
+    padding: 12px 22px !important;
+    display: flex;
+    align-items: center;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+.login {
+    background-color: var(--bg-blue);
+    height: 200px;
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 22px 0 !important;
+}
+
+.login h1 {
+    text-align: center;
+    font-family: "Gloria Hallelujah", cursive;
+    font-size: 2rem;
+}
+
+.invitation {
+    background-color: var(--bg-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invitation h1 {
+    text-align: center;
+    font-family: "Gloria Hallelujah", cursive;
+    font-size: 2rem;
+}
+
+.wa-container {
+    margin-top: 48px;
+    border-radius: 24px;
+    padding: 16px 32px !important;
+    align-self: flex-end;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+    background-color: var(--green-wa);
+    color: white;
+}
+
+.wa-container h1 {
+    font-size: 1.2rem;
+}
