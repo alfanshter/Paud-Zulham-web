@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\PaudController;
 use App\Http\Controllers\SeleksiController;
 use App\Http\Controllers\StrukturController;
 use App\Http\Controllers\UsersController;
@@ -23,13 +25,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-Route::get('/fasilitas', function () {
-    return view('pages.fasilitas');
-})->name('/fasilitas');
-Route::get('/info', function () {
-    return view('pages.info');
-})->name('/info');
 
 
 //Login
@@ -61,6 +56,23 @@ Route::post('/update_struktur', [StrukturController::class, 'update_struktur'])-
 Route::get('/kegiatan_admin', [KegiatanController::class, 'index_admin'])->middleware('admin');
 Route::get('/kegiatan', [KegiatanController::class, 'index'])->middleware('siswa');
 Route::post('/tambah_kegiatan', [KegiatanController::class, 'tambah_kegiatan'])->middleware('admin');
+Route::post('/update_kegiatan', [KegiatanController::class, 'update_kegiatan'])->middleware('admin');
+Route::get('/delete_kegiatan/{id}', [KegiatanController::class, 'delete_kegiatan'])->middleware('admin');
+
+//Fasilitas
+Route::get('/fasilitas_admin', [FasilitasController::class, 'fasilitas_admin'])->middleware('admin');
+Route::get('/fasilitas', [FasilitasController::class, 'fasilitas'])->middleware('siswa');
+Route::post('/tambah_fasilitas', [FasilitasController::class, 'tambah_fasilitas'])->middleware('admin');
+Route::post('/update_fasilitas', [FasilitasController::class, 'update_fasilitas'])->middleware('admin');
+Route::get('/delete_fasilitas/{id}', [FasilitasController::class, 'delete_fasilitas'])->middleware('admin');
+
+//Info
+Route::get('/info_admin', [PaudController::class, 'info_admin'])->middleware('admin');
+Route::get('/info', [PaudController::class, 'info'])->middleware('siswa');
+Route::post('/update_info', [PaudController::class, 'update_info'])->middleware('admin');
+Route::post('/tambah_info', [PaudController::class, 'tambah_info'])->middleware('admin');
+Route::post('/update_paud', [PaudController::class, 'update_paud'])->middleware('admin');
+Route::get('/delete_paud/{id}', [PaudController::class, 'delete_paud'])->middleware('admin');
 
 
 
@@ -115,12 +127,7 @@ Route::get('/home-edit', function () {
 Route::get('/struktur-edit', function () {
     return view('pages.struktur-edit');
 })->name('struktur-edit');
-Route::get('/fasilitas-edit', function () {
-    return view('pages.fasilitas-edit');
-})->name('fasilitas-edit');
-Route::get('/info-edit', function () {
-    return view('pages.info-edit');
-})->name('info-edit');
+
 Route::get('/seleksi-pendaftaran-gagal', function () {
     return view('pages.seleksi-pendaftaran-gagal');
 })->name('seleksi-pendaftaran-gagal');
