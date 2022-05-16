@@ -13,45 +13,52 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        //is_status = 0 // belum di seleksi
+        //is_status = 1 // diterima di seleksi
+        //is_status = 2 // ditolak di seleksi
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('tempat_lahir');
-            $table->date('tanggal_lahir');
-            $table->string('jk');
-            $table->string('nik');
-            $table->string('alamat');
-            $table->string('agama');
-            $table->string('no_telp');
+            $table->string('nama')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('jk')->nullable();
+            $table->string('nik')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('agama')->nullable();
+            $table->string('no_telp')->nullable();
             $table->integer('penerima_kps')->default(0);
             $table->string('no_kps')->default(0);
-            $table->string('foto');
-            $table->string('foto_kk');
-            $table->string('foto_akte');
-            $table->string('email');
-            $table->string('jenis_tinggal');
-            $table->string('alat_transportasi');
+            $table->string('foto')->nullable();
+            $table->string('foto_kk')->nullable();
+            $table->string('foto_akte')->nullable();
+            $table->string('email')->nullable();
+            $table->string('jenis_tinggal')->nullable();
+            $table->string('alat_transportasi')->nullable();
             //BIodata Ayah
-            $table->string('nama_ayah');
-            $table->string('tempat_lahir_ayah');
-            $table->date('tanggal_lahir_ayah');
-            $table->string('nik_ayah');
-            $table->string('pendidikan_terakhir_ayah');
-            $table->string('pekerjaan_ayah');
-            $table->string('status_ayah');
-            $table->string('penghasilan_ayah');
+            $table->string('nama_ayah')->nullable();
+            $table->string('tempat_lahir_ayah')->nullable();
+            $table->date('tanggal_lahir_ayah')->nullable();
+            $table->string('nik_ayah')->nullable();
+            $table->string('pendidikan_terakhir_ayah')->nullable();
+            $table->string('pekerjaan_ayah')->nullable();
+            $table->string('status_ayah')->nullable();
+            $table->string('penghasilan_ayah')->nullable();
             //Biodata Ibu
-            $table->string('nama_ibu');
-            $table->string('tempat_lahir_ibu');
-            $table->date('tanggal_lahir_ibu');
-            $table->string('nik_ibu');
-            $table->string('pendidikan_terakhir_ibu');
-            $table->string('pekerjaan_ibu');
-            $table->string('status_ibu');
-            $table->string('penghasilan_ibu');
+            $table->string('nama_ibu')->nullable();
+            $table->string('tempat_lahir_ibu')->nullable();
+            $table->date('tanggal_lahir_ibu')->nullable();
+            $table->string('nik_ibu')->nullable();
+            $table->string('pendidikan_terakhir_ibu')->nullable();
+            $table->string('pekerjaan_ibu')->nullable();
+            $table->string('status_ibu')->nullable();
+            $table->string('penghasilan_ibu')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+
             $table->string('password');
+            $table->integer('role')->default(1);
+            $table->integer('is_status')->default(0);
             $table->string('username')->unique();
+            $table->string('pesan_seleksi')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

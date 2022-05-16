@@ -39,4 +39,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function search($query, $nama)
+    {
+        return $query->where('nama', 'LIKE', "%{$nama}%");
+    }
 }

@@ -1,12 +1,10 @@
  <script>
-     var msg = '{{Session::get('
-     alert ')}}';
-     var exist = '{{Session::has('
-     alert ')}}';
-     if (exist) {
-         alert(msg);
-     }
- </script>
+    var msg = '{{Session::get('alert')}}';
+    var exist = '{{Session::has('alert')}}';
+    if(exist){
+      alert(msg);
+    }
+  </script>
  @extends('layout',['tittle'=> "KEGIATAN"])
  @section('content')
  <button data-bs-toggle="modal" data-bs-target="#tambahkegiatan" class="btn btn-lg bg-blue boder-pill mt-2 mb-4 fs-4 border border-2 border-dark col-md-1">Tambah </button>
@@ -36,7 +34,7 @@
 
                          <div class="modal-body bg-secondary-blue">
                              <div class="bg-blue py-2 px-4">
-                                 <h2><b>Tambah Kegiatan</b></h2>
+                                 <h2><b>Edit Kegiatan</b></h2>
                              </div>
                              <div class="bg-secondary-blue px-5 py-5">
                                  <div class="row mb-3 px-5">
@@ -60,7 +58,7 @@
 
                                  <div class="row mb-3 px-5">
                                      <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Kegiatan</label>
-                                     <input type="text" class="form-control" id="nama" required name="nama">
+                                     <input type="text" class="form-control" id="nama" value="{{$item->nama}}" required name="nama">
                                  </div>
 
                              </div>
@@ -70,6 +68,7 @@
                          <div class="modal-footer bg-primary border-0 d-flex">
 
                              <button type="submit" class="btn bg-blue ms-auto">Tambah</button>
+                            <button type="button" class="btn bg-blue">Diterima</button>
 
                          </div>
 

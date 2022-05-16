@@ -5,11 +5,11 @@
         <div class="col-md-6 col-sm-12 mt-5">
             <img class="" src="{{asset('storage/images/seleksi.png')}}" alt="struktur-organisasi"></br>
 
-            <a href="{{route('seleksi-pendaftaran')}}"><button class="btn btn-lg bg-blue boder-pill mt-5 fs-3 px-5 py-3 rounded-pill">SELEKSI SISWA</button></a>
+            <a href="/seleksi-pendaftaran"><button class="btn btn-lg bg-blue boder-pill mt-5 fs-3 px-5 py-3 rounded-pill">SELEKSI SISWA</button></a>
         </div>
         <div class="col-md-6 col-sm-12 mt-5">
             <img class="" src="{{asset('storage/images/data.png')}}" alt="struktur-organisasi" width="300"></br>
-            <a href="{{route('hasil-seleksi')}}"><button class="btn btn-lg bg-blue boder-pill mt-5 fs-3 px-5 py-3 rounded-pill">DATA SISWA</button></a>
+            <a href="/hasil-seleksi"><button class="btn btn-lg bg-blue boder-pill mt-5 fs-3 px-5 py-3 rounded-pill">DATA SISWA</button></a>
 
         </div>
      </div>  

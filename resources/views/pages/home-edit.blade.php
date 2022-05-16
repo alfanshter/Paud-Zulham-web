@@ -40,7 +40,7 @@
 
     </div>
     <div class="register-cta-container position-relative">
-        <a href="{{route("pendaftaran")}}"><button class="button-cust">DAFTAR ONLINE</button></a>
+        <a href="/pendaftaran"><button class="button-cust">DAFTAR ONLINE</button></a>
         <h1>klik disini....!</h1>
         <a  href=""><img src="{{asset("img/images/edit.png")}}" class="position-absolute top-0 end-0" alt="" style="cursor:pointer;" width="75"></a>
 

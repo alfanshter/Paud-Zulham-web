@@ -41,7 +41,7 @@
             </h1>
             @if (isset($is_edit))
             <div class="text-end">
-                <a  href=""><img src="{{asset("img/images/edit.png")}}" alt="" style="cursor:pointer;" width="75"></a>
+                <a  data-bs-toggle="modal" data-bs-target="#editstruktur" href=""><img src="{{asset("img/images/edit.png")}}" alt="" style="cursor:pointer;" width="75"></a>
             </div>
             @endif
         </div>
