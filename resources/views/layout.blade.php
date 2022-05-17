@@ -51,8 +51,8 @@
         <div class="d-flex flex-column ">
             
             @yield('content')
-
-            <div class="wa-container">
+<a href="whatsapp://send?phone=6285655021997" class="wa-container">
+              
                 <img
                     class="img-fluid"
                     src="{{asset('storage/images/wa.svg')}}"
@@ -60,7 +60,7 @@
                     alt=""
                 />
                 <h1>HUBUNGI KAMI</h1>
-            </div>
+</a>
             
         </div>
 

@@ -45,11 +45,10 @@ class UsersController extends Controller
 
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'foto' => 'image|file|max:1024',
             'foto_kk' => 'image|file|max:1024',
-            'foto_akte' => 'image|file|max:1024'
+            'foto_akte' => 'image|file|max:1024',
         ]);
         $data = $request->all();
         $text_username = strtolower($request->nama) . substr($request->nik, -4);
@@ -70,18 +69,21 @@ class UsersController extends Controller
 
         User::create($data);
 
-        if (auth()->user()->role == 0) {
+        if (auth()->user() && auth()->user()->role == 0) {
+            $details = [
+                'title' => 'Pendafataran Siswa PAUD ASSIBYAN',
+                'body' => "berikut adalah username dan password siswa. username : $username dan password : $password"
+            ];
+            Mail::to($request->email)->send(new Mailusername($details));
             return redirect('/seleksi-pendaftaran')->with('alert', 'Pendaftaran berhasil');
         }
+        $details = [
+            'title' => 'Pendafataran Siswa PAUD ASSIBYAN',
+            'body' => "berikut adalah username dan password siswa. username : $username dan password : $password"
+        ];
+        Mail::to($request->email)->send(new Mailusername($details));
+
         return redirect('/pendaftaran-lanjutan');
-
-        //$details = [
-        //    'title' => 'Mail from ItSolutionStuff.com',
-        //    'body' => 'This is for testing email using smtp'
-        //];
-        //Mail::to('paudassibyan36@gmail.com')->send(new Mailusername($details));
-
-        //dd('email send');
     }
 
     // Function to remove the spacial 
@@ -132,10 +134,13 @@ class UsersController extends Controller
         //get data
         $pendaftaran = User::where('id', auth()->user()->id)->first();
         //idpelatih;
-        $pdf = Pdf::loadview('pendaftaran.pdf-bukti-pendaftaran', [
+        $pdf = PDF::loadView('pendaftaran.pdf-bukti-pendaftaran', [
             'pendaftaran' => $pendaftaran
 
         ]);
+        $pdf->setPaper('A4', '');
+
+
         return $pdf->stream();
     }
 

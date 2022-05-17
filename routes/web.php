@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\PaudController;
+use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\SeleksiController;
 use App\Http\Controllers\StrukturController;
 use App\Http\Controllers\UsersController;
@@ -74,6 +76,12 @@ Route::post('/tambah_info', [PaudController::class, 'tambah_info'])->middleware(
 Route::post('/update_paud', [PaudController::class, 'update_paud'])->middleware('admin');
 Route::get('/delete_paud/{id}', [PaudController::class, 'delete_paud'])->middleware('admin');
 
+//Data Siswa
+Route::get('/data_siswa', [DataSiswaController::class, 'data_siswa'])->middleware('admin');
+Route::get('/cetak_kartu/{id}', [DataSiswaController::class, 'cetak_kartu']);
+
+//Pengumuman Siswa
+Route::get('/pengumuman', [PengumumanController::class, 'pengumuman'])->middleware('siswa');
 
 
 //Dashboard
@@ -108,18 +116,7 @@ Route::post('/seleksi_ditolak', [SeleksiController::class, 'seleksi_ditolak'])->
 
 
 
-Route::get('/hasil-seleksi', function () {
-    return view('pages.hasil-seleksi');
-})->name('hasil-seleksi');
-Route::get('/hasil-seleksi-diterima', function () {
-    return view('pages.hasil-seleksi-diterima');
-})->name('hasil-seleksi-diterima');
-Route::get('/hasil-seleksi-gagal', function () {
-    return view('pages.hasil-seleksi-gagal');
-})->name('hasil-seleksi-gagal');
-Route::get('/data-siswa', function () {
-    return view('pages.data-siswa');
-})->name('data-siswa');
+
 Route::get('/home-edit', function () {
     return view('pages.home-edit');
 })->name('home-edit');

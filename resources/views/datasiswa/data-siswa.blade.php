@@ -1,16 +1,9 @@
-                                  <script>
-    var msg = '{{Session::get('alert')}}';
-    var exist = '{{Session::has('alert')}}';
-    if(exist){
-      alert(msg);
-    }
-  </script>
-@extends('layout',['tittle'=> "SELEKSI PENDAFTARAN",'is_login' => true])
+@extends('layout',['tittle'=> "DATA SISWA",'is_login' => true])
 @section('content')
 <div class="container-fluid mt-2 pb-5 pt-5 bg-secondary-blue row px-5" style="min-height:20vw;">
-    <form action="" method="get">
+    <form action="">
         <button type="button" class="btn btn-lg bg-blue boder-pill mt-5 fs-3 px-5 border border-2 border-dark" data-bs-toggle="modal" data-bs-target="#TambahSiswa">+ Tambah</button></br>
-        <div class="d-flex mt-3" style="gap:20px;">
+       <div class="d-flex mt-3" style="gap:20px;">
             <div class="">
                 <button class="btn btn-lg bg-blue fs-3 px-5 border border-2 border-dark">Date</button>
             </div>
@@ -26,349 +19,35 @@
             </div>
             <input type="text" name="nama" class="form-control" id="inputEmail3" placeholder="NAMA">
             <button type="submit" class="btn btn-lg bg-blue fs-3 px-5 border border-2 border-dark">Search</button>
-            <a href="/data_siswa" class="btn btn-lg bg-blue fs-3 px-5 border border-2 border-dark">Reset</a>
+            <button class="btn btn-lg bg-blue fs-3 px-5 border border-2 border-dark">Reset</button>
 
-        </div>
+        </div> 
     </form>
+   
 
     <table class="table table-bordered border border-2 border-dark mt-5 fs-3">
         <thead class="bg-blue">
-            <tr>
-                <th scope="col">NO</th>
-                <th scope="col">NAMA</th>
-                <th scope="col">TANGGAL PENDAFTARAN</th>
-                <th scope="col">AKSI</th>
-            </tr>
+          <tr>
+            <th scope="col">NO</th>
+            <th scope="col">NAMA</th>
+            <th scope="col">TANGGAL PENDAFTARAN</th>
+            <th scope="col">AKSI</th>
+          </tr>
         </thead>
         <tbody>
-            @foreach ($seleksi as $item)
-            <tr>
-                <th scope="row">{{$loop->iteration}}</th>
+         @foreach ($datasiswa as $item)
+          <tr>
+            <th scope="row">{{$loop->iteration}}</th>
                 <td>{{$item->nama}}</td>
                 <td>{{$item->created_at->format('d-m-Y')}}</td>
-                <td class="text-center">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#seleksiModal{{$item->id}}">Seleksi</button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="seleksiModal{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-xl">
-                            <div class="modal-content">
-                                <div class="modal-header bg-secondary-blue border-0">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body bg-secondary-blue">
-                                    <div class="bg-blue py-2 px-4">
-                                        <h2><b>BIODATA SISWA</b></h2>
-                                    </div>
-                                    <div class="bg-secondary-blue px-5 py-5">
-                                        <form action="" class="fs-4">
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">NAMA SISWA</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" disabled value="{{$item->nama}}" id="nama" placeholder="NAMA SISWA">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">TEMPAT LAHIR</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" value="{{$item->tempat_lahir}}" id="inputEmail3" placeholder="TEMPAT LAHIR">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">TANGGAL LAHIR</label>
-                                                <div class="col-sm-3">
-                                                    <input type="text" class="form-control" value="{{$item->tanggal_lahir}}" id="inputEmail3" placeholder="TANGGAL">
-                                                </div>
-                                                {{--<div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="inputEmail3" placeholder="BULAN">
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="inputEmail3" placeholder="TAHUN">
-                                                </div>--}}
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">JENIS KELAMIN</label>
-                                                <div class="col-sm-4">
-                                                    <select class="form-select" aria-label="Default select example">
-                                                        <option selected>{{$item->jk}}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">NIK</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" value="{{$item->nik}}" id="inputEmail3" placeholder="NIK">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">ALAMAT</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->alamat}}" placeholder="ALAMAT">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">AGAMA</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" value="{{$item->agama}}" id="inputEmail3" placeholder="AGAMA">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">NO TELPON</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" value="{{$item->no_telp}}" id="inputEmail3" placeholder="NO TELPON">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">Apakah siswa penerima KPS</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" value="{{$item->penerima_kps}}" id="inputEmail3" placeholder="YA/TIDAK">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">NO KPS</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" value="{{$item->no_kps}}" id="inputEmail3" placeholder="YA/TIDAK">
-                                                    <small class="fs-5">*Jika Tidak Memiliki Harap Diisi “0”</small>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">FOTO</label>
-                                                <div class="col-sm-4">
-                                                    <img src="{{asset('storage/'.$item->foto)}}" width="200" height="200" alt="" srcset="">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">FOTO KK</label>
-                                                <div class="col-sm-4">
-                                                    <img src="{{asset('storage/'.$item->foto_kk)}}" width="200" height="200" alt="" srcset="">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">FOTO AKTE</label>
-                                                <div class="col-sm-4">
-                                                    <img src="{{asset('storage/'.$item->foto_akte)}}" width="200" height="200" alt="" srcset="">
+            <td class="text-center">
+                <a class="border-0 me-3" data-bs-toggle="modal" data-bs-target="#edit_siswa{{$item->id}}"><img src="{{asset('storage/images/edit.png')}}" alt="" width="50" style="cursor:pointer"></a>
+                <a href="/hapus_siswa/{{$item->id}}" class="border-0 me-3"  onclick="return confirm('Are you sure?');"><img src="{{asset('storage/images/delete.png')}}" alt="" width="50" style="cursor:pointer"></a>
+                <a href="/cetak_kartu/{{$item->id}}" class="border-0"><img src="{{asset('storage/images/pdf.png')}}" alt="" width="50" style="cursor:pointer"></a>
 
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">EMAIL</label>
-                                                <div class="col-sm-4">
-                                                    <input type="email" class="form-control" value="{{$item->email}}" id="inputEmail3" placeholder="EMAIL">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">JENIS TINGGAL</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->jenis_tinggal}}" placeholder="JENIS TINGGAL">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">ALAT TRANSPORTASI</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->alat_transportasi}}" placeholder="ALAT TRANSPORTASI">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-
-
-                                    <div class="bg-blue py-2 px-4 mt-5">
-                                        <h2><b>BIODATA AYAH</b></h2>
-                                    </div>
-                                    <div class="bg-secondary-blue px-5 py-5">
-                                        <form action="" class="fs-4">
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">NAMA AYAH</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->nama_ayah}}" placeholder="NAMA AYAH">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">TEMPAT LAHIR</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->tempat_lahir_ayah}}" placeholder="TEMPAT LAHIR">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">TANGGAL LAHIR</label>
-                                                <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->tanggal_lahir_ayah}}" placeholder="TANGGAL">
-                                                </div>
-                                                {{--<div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="inputEmail3" placeholder="BULAN">
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="inputEmail3" placeholder="TAHUN">
-                                                </div>--}}
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">NIK</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->nik_ayah}}" placeholder="NIK">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">PENDIDIKAN TERAKHIR</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->pendidikan_terakhir_ayah}}" placeholder="PENDIDIKAN TERAKHIR">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">PEKERJAN</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->pekerjaan_ayah}}" placeholder="PEKERJAN">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">STATUS</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->status_ayah}}" placeholder="MASIH HIDUP/MENINGGAL">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">PENGHASILAN</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->penghasilan_ayah}}" placeholder="PENGHASILAN">
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                    </div>
-
-                                    <div class="bg-blue py-2 px-4 mt-5">
-                                        <h2><b>BIODATA IBU</b></h2>
-                                    </div>
-                                    <div class="bg-secondary-blue px-5 py-5">
-                                        <form action="" class="fs-4">
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">NAMA ibu</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->nama_ibu}}" placeholder="NAMA ibu">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">TEMPAT LAHIR</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->tempat_lahir_ibu}}" placeholder="TEMPAT LAHIR">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">TANGGAL LAHIR</label>
-                                                <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->tanggal_lahir_ibu}}" placeholder="TANGGAL">
-                                                </div>
-                                                {{--<div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="inputEmail3" placeholder="BULAN">
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <input type="text" class="form-control" id="inputEmail3" placeholder="TAHUN">
-                                                </div>--}}
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">NIK</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->nik_ibu}}" placeholder="NIK">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">PENDIDIKAN TERAKHIR</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->pendidikan_terakhir_ibu}}" placeholder="PENDIDIKAN TERAKHIR">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">PEKERJAN</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->pekerjaan_ibu}}" placeholder="PEKERJAN">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">STATUS</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->status_ibu}}" placeholder="MASIH HIDUP/MENINGGAL">
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3 px-5">
-                                                <label for="inputEmail3" class="col-sm-2 col-form-label">PENGHASILAN</label>
-                                                <div class="col-sm-4">
-                                                    <input type="text" class="form-control" id="inputEmail3" value="{{$item->penghasilan_ibu}}" placeholder="PENGHASILAN">
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                    </div>
-
-
-                                </div>
-                                <div class="modal-footer bg-primary border-0 d-flex">
-                                    <form action="/seleksi_diterima" method="post">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{$item->id}}">
-                                        <button type="submit" class="btn bg-blue">Diterima</button>
-                                    </form>
-                                    <button data-bs-toggle="modal" data-bs-target="#seleksi_ditolak{{$item->id}}" type="button" class="btn bg-blue ms-auto">Tidak Diterima</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-</div>
-
-</td>
-</tr>
-
-<div class="modal fade" id="seleksi_ditolak{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <form action="/seleksi_ditolak" method="post">
-            @csrf
-            <input type="hidden" name="id" value="{{$item->id}}">
-            <div class="modal-content">
-
-                <div class="modal-header bg-secondary-blue border-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-secondary-blue d-flex justify-content-center" style="height:30vw">
-                    <input type="text" name="pesan_seleksi" required class=" align-self-center" style="width:80%" placeholder="Tulis Pesan Untuk Siswa">
-                </div>
-
-                <div class="modal-footer bg-primary border-0 d-flex">
-                    <button type="submit" class="btn bg-blue ms-auto">Kirim</button>
-                </div>
-            </div>
-        </form>
-
-    </div>
-
-
-    @endforeach
-
-
-    </tbody>
-    </table>
-
-    <table class="table table-bordered border border-2 border-dark mt-5 fs-3">
-        <thead class="bg-blue">
-            <tr>
-                <th scope="col">NO</th>
-                <th scope="col">NAMA</th>
-                <th scope="col">TANGGAL PENDAFTARAN</th>
-                <th scope="col">STATUS</th>
-                <th scope="col">AKSI</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($hasil_seleksi as $item)
-            <tr>
-                <th scope="row">{{$loop->iteration}}</th>
-                <td>{{$item->nama}}</td>
-                <td>{{$item->created_at->format('d-m-Y')}}</td>
-                @if ($item->is_status == 1)
-                <td>Diterima</td>
-                @endif
-                @if ($item->is_status == 2)
-                <td>Ditolak</td>
-                @endif
-                <td class="text-center">
-                    <a class="border-0 me-3"  data-bs-toggle="modal" data-bs-target="#edit_siswa{{$item->id}}"><img src="{{asset('storage/images/edit.png')}}" alt="" width="50" style="cursor:pointer"></a>
-                    <!-- Modal Edit Pendaftaran -->
+            </td>
+          </tr>   
+          <!-- Modal Edit Pendaftaran -->
                     <div class="modal fade" id="edit_siswa{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl">
                             <form action="/update_siswa" method="post" enctype="multipart/form-data">
@@ -721,18 +400,12 @@
                             </form>
                         </div>
                     </div>
-                    <a href="/hapus_siswa/{{$item->id}}" class="border-0" onclick="return confirm('Are you sure?');"><img src="{{asset('storage/images/delete.png')}}" alt="" width="50" style="cursor:pointer"></a>
-                </td>
-            </tr>
-
-            @endforeach
-
-
+         @endforeach
+          
+         
         </tbody>
-    </table>
-
-
-
+      </table>
+    
 </div>
 
 
@@ -997,6 +670,5 @@
 
     </div>
 </div>
-
 
 @endsection

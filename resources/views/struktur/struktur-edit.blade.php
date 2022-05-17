@@ -11,7 +11,7 @@
     @if ($struktur ==null)
     <img class="" src="http://placehold.jp/3d4070/ffffff/700x700.png" alt="struktur-organisasi">
     @else
-    <img  src="{{asset('storage/'.$struktur->foto)}}" style="width: 200px; height:200px">
+    <img  src="{{asset('storage/'.$struktur->foto)}}" style="width: 700px; height:700px">
 
     @endif
 

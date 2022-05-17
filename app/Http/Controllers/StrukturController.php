@@ -17,7 +17,8 @@ class StrukturController extends Controller
 
     public function index()
     {
-        return view('struktur.struktur');
+        $struktur = Struktur::first();
+        return view('struktur.struktur', ['struktur' => $struktur]);
     }
 
     public function update_struktur(Request $request)

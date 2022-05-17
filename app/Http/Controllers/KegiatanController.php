@@ -10,7 +10,8 @@ class KegiatanController extends Controller
 {
     public function index()
     {
-        return view('kegiatan.kegiatan');
+        $data = Kegiatan::all();
+        return view('kegiatan.kegiatan', ['kegiatan' => $data]);
     }
 
     public function index_admin()

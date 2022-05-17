@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-6 col-sm-12 mt-5">
             <img class="" src="{{asset('storage/images/data.png')}}" alt="struktur-organisasi" width="300"></br>
-            <a href="/hasil-seleksi"><button class="btn btn-lg bg-blue boder-pill mt-5 fs-3 px-5 py-3 rounded-pill">DATA SISWA</button></a>
+            <a href="/data_siswa"><button class="btn btn-lg bg-blue boder-pill mt-5 fs-3 px-5 py-3 rounded-pill">DATA SISWA</button></a>
 
         </div>
      </div>  

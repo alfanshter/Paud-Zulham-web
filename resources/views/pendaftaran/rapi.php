@@ -1,226 +1,62 @@
- <script>
-     var msg = '{{Session::get('
-     alert ')}}';
-     var exist = '{{Session::has('
-     alert ')}}';
-     if (exist) {
-         alert(msg);
-     }
- </script>
- @extends('layout',['tittle'=> "INFO PAUD"])
- @section('content')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
- <div class="container-fluid mt-2 pb-5 pt-5 bg-secondary-blue justify-content-start">
-     <div class="container">
-         <div class=" d-flex align-items-center">
-             <img class="image-thumbnail flex-shrink-0" src="{{asset('storage/images/icon-address.png')}}" alt="" width="70">
-             @if ($info !=null)
-             <h1 class="flex-grow-1 ms-3">{{$info->alamat}}</h1>
-             @else
-             <h1 class="flex-grow-1 ms-3">Jl. Kp. Panyirapan Desa Panyirapan kec. Baros Kab. Serang</h1>
-             @endif
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-         </div>
-         <div class=" d-flex align-items-center mt-3">
-             <img class="image-thumbnail flex-shrink-0" src="{{asset('storage/images/icon-wa.png')}}" alt="" width="70">
-             @if ($info !=null)
-             <h1 class="flex-grow-1 ms-3">{{$info->wa}}</h1>
-             @else
-             <h1 class="flex-grow-1 ms-3">whatsapp : 0895358318714</h1>
-             @endif
+    <title>Paud</title>
 
-         </div>
-         <div class=" d-flex align-items-center mt-3">
-             <img class="image-thumbnail flex-shrink-0" src="{{asset('storage/images/icon-email.png')}}" alt="" width="70">
-             @if ($info !=null)
-             <h1 class="flex-grow-1 ms-3">{{$info->email}}</h1>
-             @else
-             <h1 class="flex-grow-1 ms-3">E-mail : paudassibyan@gmail.com</h1>
-             @endif
-             <a href="" data-bs-toggle="modal" data-bs-target="#info_edit"><img src="{{asset("img/images/edit.png")}}" alt="" style="cursor:pointer;" width="50"></a>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+</head>
 
-         </div>
-         <button data-bs-toggle="modal" data-bs-target="#tambahinfo" class="btn btn-lg bg-blue boder-pill mt-5 fs-3 border border-2 border-dark">+ Tambah</button>
+<body>
+    <!-- CONTENT -->
+    <div class="d-flex flex-column ">
 
-         <div class="row text-center mt-5">
-             @foreach ($paud as $item)
-             <div class="col-md-6 col-sm-12 mt-5 position-relative">
-                 <img class="" src="{{asset('storage/'.$item->foto)}}" style="width: 400px;height:400px" alt="struktur-organisasi">
-                 <h2 class="text-center mt-4">{{$item->nama}}</h2>
-                 <a href="" data-bs-toggle="modal" data-bs-target="#editpaud"><img src="{{asset("img/images/edit.png")}}" class="position-absolute top-0 end-0" alt="" style="cursor:pointer;" width="50"></a>
-             </div>
-             <!-- Modal Edit Paud -->
-             <div class="modal fade" id="editpaud" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                 <div class="modal-dialog modal-xl">
-                     <form action="/tambah_info" method="post" enctype="multipart/form-data">
-                         @csrf
-                         <div class="modal-content">
+        <div class="row justify-content-center">
+            <div class="card mt-5 col-md-6" style="min-height:40vw;background-image: url('{{asset("img/images/card.png")}}');background-size:contain">
+                <div class="card-body">
+                    <div class="row" style="margin-top:7rem">
+                        <div class="col-md-4">
+                            <img src="{{asset("img/images/card-photo.png")}}" alt="" width="250" class="ps-5">
+                        </div>
+                        <div class="col-md-8 fs-3">
+                            <table>
+                                <tr>
+                                    <td>Nama</td>
+                                    <td>&nbsp;:</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Tempat, Tanggal Lahir</td>
+                                    <td>&nbsp;:</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Alamat</td>
+                                    <td>&nbsp;:</td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <h2 style="margin-top:3rem" class="text-end"><b>Kepala Sekolah</b></h2>
+                            <h2 style="margin-top:7rem" class="text-end"><b>Zulfa Luthfiana</b></h2>
 
-                             <div class="modal-header bg-secondary-blue border-0">
-                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                             </div>
+                        </div>
 
-                             <div class="modal-body bg-secondary-blue">
-                                 <div class="bg-blue py-2 px-4">
-                                     <h2><b>Tambah info</b></h2>
-                                 </div>
-                                 <div class="bg-secondary-blue px-5 py-5">
-                                     <div class="row mb-3 px-5">
-                                         <label for="inputEmail3" class="col-sm-2 col-form-label">Foto</label>
-                                         <img class="img-preview img-fluid" src="http://placehold.jp/3d4070/ffffff/400x400.png" style="width: 400px;height:400px" alt="struktur-organisasi">
-                                         <input type="file" class="form-control" id="foto" required name="foto" value="{{old('foto')}}" onchange="previewImage()">
-                                         <script>
-                                             function previewImage() {
-                                                 const image = document.querySelector('#foto');
-                                                 const imgPreview = document.querySelector('.img-preview');
-                                                 imgPreview.style.display = 'block';
-                                                 const oFReader = new FileReader();
-                                                 oFReader.readAsDataURL(foto.files[0]);
-                                                 oFReader.onload = function(oFREvent) {
-                                                     imgPreview.src = oFREvent.target.result;
-                                                 }
-                                             }
-                                         </script>
-
-                                     </div>
-
-                                     <div class="row mb-3 px-5">
-                                         <label for="inputEmail3" class="col-sm-2 col-form-label">Nama</label>
-                                         <input type="text" class="form-control" id="nama" required name="nama">
-                                     </div>
-
-                                 </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-                             </div>
-                             <div class="modal-footer bg-primary border-0 d-flex">
+    </div>
 
-                                 <button type="submit" class="btn bg-blue ms-auto">Tambah</button>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
 
-                             </div>
-
-                         </div>
-                     </form>
-                 </div>
-             </div>
-             @endforeach
-
-         </div>
-     </div>
-
- </div>
-
- <!-- Modal Edit info-edit -->
- <div class="modal fade" id="info_edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-xl">
-         <form action="/update_info" method="post" enctype="multipart/form-data">
-             @csrf
-             <div class="modal-content">
-
-                 <div class="modal-header bg-secondary-blue border-0">
-                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                 </div>
-
-                 <div class="modal-body bg-secondary-blue">
-                     <div class="bg-blue py-2 px-4">
-                         <h2><b>Edit </b></h2>
-                     </div>
-                     <div class="bg-secondary-blue px-5 py-5">
-                         <div class="row mb-3 px-5">
-                             <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Alamat</label>
-                             @if ($info !=null)
-                             <input type="text" class="form-control" id="nama" value="{{$info->alamat}}" required name="alamat">
-                             @else
-                             <input type="text" class="form-control" id="nama" required name="alamat">
-                             @endif
-
-                         </div>
-
-                         <div class="row mb-3 px-5">
-                             <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Wa</label>
-                             @if ($info !=null)
-                             <input type="text" class="form-control" id="wa" value="{{$info->wa}}" required name="wa">
-                             @else
-                             <input type="text" class="form-control" id="wa" required name="wa">
-                             @endif
-                         </div>
-
-                         <div class="row mb-3 px-5">
-                             <label for="inputEmail3" class="col-sm-2 col-form-label">Nama Email</label>
-                             @if ($info !=null)
-                             <input type="text" class="form-control" id="email" value="{{$info->email}}" required name="email">
-                             @else
-                             <input type="text" class="form-control" id="email" required name="email">
-                             @endif
-
-                         </div>
-
-
-                     </div>
-
-
-                 </div>
-                 <div class="modal-footer bg-primary border-0 d-flex">
-                     <button type="submit" class="btn bg-blue ms-auto">Update</button>
-                 </div>
-
-             </div>
-         </form>
-     </div>
- </div>
-
- <!-- Modal Tambah info -->
- <div class="modal fade" id="tambahinfo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-xl">
-         <form action="/tambah_info" method="post" enctype="multipart/form-data">
-             @csrf
-             <div class="modal-content">
-
-                 <div class="modal-header bg-secondary-blue border-0">
-                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                 </div>
-
-                 <div class="modal-body bg-secondary-blue">
-                     <div class="bg-blue py-2 px-4">
-                         <h2><b>Tambah info</b></h2>
-                     </div>
-                     <div class="bg-secondary-blue px-5 py-5">
-                         <div class="row mb-3 px-5">
-                             <label for="inputEmail3" class="col-sm-2 col-form-label">Foto</label>
-                             <img class="img-preview img-fluid" src="http://placehold.jp/3d4070/ffffff/400x400.png" style="width: 400px;height:400px" alt="struktur-organisasi">
-                             <input type="file" class="form-control" id="foto" required name="foto" value="{{old('foto')}}" onchange="previewImage()">
-                             <script>
-                                 function previewImage() {
-                                     const image = document.querySelector('#foto');
-                                     const imgPreview = document.querySelector('.img-preview');
-                                     imgPreview.style.display = 'block';
-                                     const oFReader = new FileReader();
-                                     oFReader.readAsDataURL(foto.files[0]);
-                                     oFReader.onload = function(oFREvent) {
-                                         imgPreview.src = oFREvent.target.result;
-                                     }
-                                 }
-                             </script>
-
-                         </div>
-
-                         <div class="row mb-3 px-5">
-                             <label for="inputEmail3" class="col-sm-2 col-form-label">Nama</label>
-                             <input type="text" class="form-control" id="nama" required name="nama">
-                         </div>
-
-                     </div>
-
-
-                 </div>
-                 <div class="modal-footer bg-primary border-0 d-flex">
-
-                     <button type="submit" class="btn bg-blue ms-auto">Tambah</button>
-
-                 </div>
-
-             </div>
-         </form>
-     </div>
- </div>
- @endsection
+</html>

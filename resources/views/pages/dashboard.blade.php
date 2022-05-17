@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-6 col-sm-12 mt-5">
             <img class="" src="{{asset('storage/images/pengumuman.png')}}" alt="struktur-organisasi" width="300"></br>
-            <a href="{{route('hasil-seleksi')}}"><button class="btn btn-lg bg-blue boder-pill mt-5 fs-3 px-5 py-3 rounded-pill">PENGUMUMAN HASIL SELEKSI PENDAFTARAN</button></a>
+            <a href="/pengumuman"><button class="btn btn-lg bg-blue boder-pill mt-5 fs-3 px-5 py-3 rounded-pill">PENGUMUMAN HASIL SELEKSI PENDAFTARAN</button></a>
 
         </div>
      </div>  

@@ -9,10 +9,7 @@
         </div>
     </div>
     <h2 class="container mt-5" style="margin-bottom:170px;">
-        <ol>
-            <li class="mb-2">Lorem ipsum</li>
-            <li>Lorem ipsum</li>
-        </ol>
+         <p>{{$visi->visi}}</p>
     </h2>
     <div class="bg-blue">
         <div class="container py-3">
@@ -22,10 +19,7 @@
         </div>
     </div>
     <h2 class="container mt-5">
-        <ol>
-            <li class="mb-2">Lorem ipsum</li>
-            <li>Lorem ipsum</li>
-        </ol>
+          <p>{{$misi->misi}}</p>
     </h2>
 
 </div>

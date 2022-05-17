@@ -43,14 +43,14 @@
                                  <div class="row mb-3 px-5">
                                      <label for="inputEmail3" class="col-sm-2 col-form-label">Foto Kegiatan</label>
                                      <img class="img-preview_edit img-fluid" src="{{asset('storage/'.$item->foto)}}" style="width: 400px;height:400px" alt="struktur-organisasi">
-                                     <input type="file" class="form-control" id="foto"  name="foto" value="{{old('foto')}}" onchange="previewImage()">
+                                     <input type="file" class="form-control" id="foto_edit"  name="foto" value="{{old('foto')}}" onchange="previewImageEdit()">
                                      <script>
-                                         function previewImage() {
-                                             const image = document.querySelector('#foto');
+                                         function previewImageEdit() {
+                                             const image = document.querySelector('#foto_edit');
                                              const imgPreview = document.querySelector('.img-preview_edit');
                                              imgPreview.style.display = 'block';
                                              const oFReader = new FileReader();
-                                             oFReader.readAsDataURL(foto.files[0]);
+                                             oFReader.readAsDataURL(foto_edit.files[0]);
                                              oFReader.onload = function(oFREvent) {
                                                  imgPreview.src = oFREvent.target.result;
                                              }

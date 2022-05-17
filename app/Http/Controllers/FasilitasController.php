@@ -16,7 +16,8 @@ class FasilitasController extends Controller
 
     public function fasilitas()
     {
-        return view('fasilitas.fasilitas');
+        $data = Fasilitas::all();
+        return view('fasilitas.fasilitas', ['fasilitas' => $data]);
     }
 
     public function tambah_fasilitas(Request $request)

@@ -22,7 +22,13 @@ class PaudController extends Controller
 
     public function info()
     {
-        return view('paud.info');
+        $info = PaudInfo::first();
+        $paud = Paud::all();
+
+        return view('paud.info', [
+            'info' => $info,
+            'paud' => $paud
+        ]);
     }
 
     public function update_info(Request $request)

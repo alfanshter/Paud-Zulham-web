@@ -11,7 +11,13 @@ class VisiMisiController extends Controller
 
     public function index()
     {
-        return view('visimisi.visimisi');
+        $visi = Visimisi::select('visi')->first();
+        $misi = Visimisi::select('misi')->first();
+
+        return view('visimisi.visimisi', [
+            'visi' => $visi,
+            'misi' => $misi
+        ]);
     }
 
     public function edit_visimisi()
