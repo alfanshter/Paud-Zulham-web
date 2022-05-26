@@ -43,7 +43,7 @@
             <td class="text-center">
                 <a class="border-0 me-3" data-bs-toggle="modal" data-bs-target="#edit_siswa{{$item->id}}"><img src="{{asset('storage/images/edit.png')}}" alt="" width="50" style="cursor:pointer"></a>
                 <a href="/hapus_siswa/{{$item->id}}" class="border-0 me-3"  onclick="return confirm('Are you sure?');"><img src="{{asset('storage/images/delete.png')}}" alt="" width="50" style="cursor:pointer"></a>
-                <a href="/cetak_kartu/{{$item->id}}" class="border-0"><img src="{{asset('storage/images/pdf.png')}}" alt="" width="50" style="cursor:pointer"></a>
+                <a href="/cetak_pdf/{{$item->id}}" class="border-0"><img src="{{asset('storage/images/pdf.png')}}" alt="" width="50" style="cursor:pointer"></a>
 
             </td>
           </tr>   

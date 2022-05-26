@@ -4,7 +4,7 @@
     <div class="row text-center mt-5">
        <div class="col-md-4 col-sm-12 mt-5">
             <img class="" src="{{asset('img/btn-edit.svg')}}" alt="struktur-organisasi" style="width: 180px; height:200px"></br>
-           <button data-bs-target="#edit_data" class="btn btn-lg bg-blue boder-pill mt-5 fs-3 px-5 py-3 rounded-pill"><p style="font-size: 20px">EDIT DATA PENDAFTARAN &ensp;&ensp;&ensp;</p></button>
+           <button data-bs-target="#edit_data" data-bs-toggle="modal" class="btn btn-lg bg-blue boder-pill mt-5 fs-3 px-5 py-3 rounded-pill"><p style="font-size: 20px">EDIT DATA PENDAFTARAN &ensp;&ensp;&ensp;</p></button>
 
         </div>
         <div class="col-md-4 col-sm-12 mt-5">
@@ -22,7 +22,7 @@
      </div>  
 </div>
 
-    <!-- Modal Edit Pendaftaran -->
+    <!-- Modal Edit  -->
                     <div class="modal fade" id="edit_data" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-xl">
                             <form action="/update_siswa" method="post" enctype="multipart/form-data">

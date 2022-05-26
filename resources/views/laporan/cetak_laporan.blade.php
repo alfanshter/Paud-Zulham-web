@@ -84,12 +84,21 @@ div.absolute {
   </tr>
 </thead>
 <tbody>
-  <tr>
-    <td class="tg-nrix">1</td>
-    <td class="tg-nrix">AUDREY</td>
-    <td class="tg-nrix">08-23-2020</td>
-    <td class="tg-nrix">DITERIMA</td>
+    @foreach ($datasiswa as $item)
+        <tr>
+    <td class="tg-nrix">{{$loop->iteration}}</td>
+    <td class="tg-nrix">{{$item->nama}}</td>
+    <td class="tg-nrix">{{$item->created_at->format('d-m-Y')}}</td>
+     <td class="tg-nrix">
+                    @if ($item->is_status == 1)
+                    DITERIMA
+                    @else
+                    TIDAK DITERIMA
+                    @endif
+                </td>
   </tr>
+    @endforeach
+  
 </tbody>
 </table>
 

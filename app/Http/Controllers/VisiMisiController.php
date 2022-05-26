@@ -11,8 +11,8 @@ class VisiMisiController extends Controller
 
     public function index()
     {
-        $visi = Visimisi::select('visi')->first();
-        $misi = Visimisi::select('misi')->first();
+        $visi = Visimisi::first();
+        $misi = Visimisi::first();
 
         return view('visimisi.visimisi', [
             'visi' => $visi,
@@ -22,8 +22,8 @@ class VisiMisiController extends Controller
 
     public function edit_visimisi()
     {
-        $visi = Visimisi::select('visi')->first();
-        $misi = Visimisi::select('misi')->first();
+        $visi = Visimisi::first();
+        $misi = Visimisi::first();
         return view('visimisi.visimisi-edit', [
             'visi' => $visi,
             'misi' => $misi
@@ -36,10 +36,19 @@ class VisiMisiController extends Controller
             'visi' => 'required'
         ]);
 
-        //update
-        $update = DB::table('visimisis')->update([
-            'visi' => $request->visi
-        ]);
+        //cek visi kosong apa tidak
+        $cekvisi = Visimisi::first();
+        // jika visi kosong maka ? 
+        if ($cekvisi == null) {
+            $tambahvisi = Visimisi::create($validatedData);
+        }
+        //jika visi tidak kosong maka akan update
+        else {
+            //update
+            $update = DB::table('visimisis')->update([
+                'visi' => $request->visi
+            ]);
+        }
 
         return redirect('/visimisi-edit')->with('alert', 'Update visi berhasil');
     }

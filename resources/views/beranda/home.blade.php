@@ -22,7 +22,7 @@
                 <h1>DI BUKA</h1>
             </div>
             <div class="date-box-second">
-                <h1>20 JUNI 2022</h1>
+                <h1>22 JUNI 2022</h1>
             </div>
         </div>
         <div class="date-box-title">

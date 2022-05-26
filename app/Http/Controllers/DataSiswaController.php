@@ -46,4 +46,19 @@ class DataSiswaController extends Controller
         $pdf->setPaper('A4', '');
         return $pdf->stream();
     }
+
+    public function cetak_pdf($id)
+    {
+        //get data
+        $pendaftaran = User::where('id', $id)->first();
+        //idpelatih;
+        $pdf = PDF::loadView('pendaftaran.pdf-bukti-pendaftaran', [
+            'pendaftaran' => $pendaftaran
+
+        ]);
+        $pdf->setPaper('A4', '');
+
+
+        return $pdf->stream();
+    }
 }

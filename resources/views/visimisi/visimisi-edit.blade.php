@@ -12,7 +12,13 @@
         </div>
     </div>
     <h2 class="container mt-5" style="margin-bottom:170px;">
-      <p>{{$visi->visi}}</p>
+        @if ($visi==null)
+            
+        @else
+        {!!$visi->visi!!}
+   
+        @endif 
+
     </h2>
     <div class="bg-blue">
         <div class="container py-3">
@@ -25,7 +31,12 @@
         </div>
     </div>
     <h2 class="container mt-5">
-              <p>{{$misi->misi}}</p>
+        @if ($misi==null)
+            
+        @else
+        <p>{!!$misi->misi!!}</p>
+   
+        @endif 
     </h2>
 
      <!-- Modal Edit Misi -->
@@ -46,9 +57,16 @@
                         <div class="bg-secondary-blue px-5 py-5">
                             <div class="row mb-3 px-5">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">MISI</label>
-                                <div class="col-sm-4">
-                                    <textarea name="misi" placeholder="MISI" style="width:300px">{{$visi->misi}}</textarea>
-                                </div>
+                                   @if ($misi==null)
+                                    <input name="misi" id="misi" type="hidden">
+                                    <trix-editor input="misi" class="trix-content"></trix-editor>
+
+                                    @else
+                                    <input name="misi" id="misi" value="{{$misi->misi}}" type="hidden">
+                                    <trix-editor input="misi" class="trix-content"></trix-editor>
+                               
+                                    @endif  
+                            
                             </div>
 
                         </div>
@@ -84,9 +102,18 @@
                         <div class="bg-secondary-blue px-5 py-5">
                             <div class="row mb-3 px-5">
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">VISI</label>
-                                <div class="col-sm-4">
-                                    <textarea name="visi" placeholder="VISI" style="width:300px">{{$visi->visi}}</textarea>
-                                </div>
+                                    @if ($visi==null)
+                                    <input name="visi" id="visi" type="hidden">
+                                    <trix-editor input="visi" class="trix-content"></trix-editor>
+
+                                    @else
+                                    <input name="visi" id="visi" value="{{$visi->visi}}" type="hidden">
+                                    <trix-editor input="visi" class="trix-content"></trix-editor>
+                               
+                                    @endif 
+            
+
+
                             </div>
 
                         </div>

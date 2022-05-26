@@ -9,8 +9,13 @@
         </div>
     </div>
     <h2 class="container mt-5" style="margin-bottom:170px;">
-         <p>{{$visi->visi}}</p>
-    </h2>
+        @if ($visi==null)
+            
+        @else
+        <p>{{$visi->visi}}</p>
+   
+        @endif 
+       </h2>
     <div class="bg-blue">
         <div class="container py-3">
             <h1>
@@ -19,7 +24,12 @@
         </div>
     </div>
     <h2 class="container mt-5">
-          <p>{{$misi->misi}}</p>
+        @if ($misi==null)
+            
+        @else
+        <p>{{$misi->misi}}</p>
+   
+        @endif 
     </h2>
 
 </div>
